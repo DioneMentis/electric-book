@@ -4,6 +4,8 @@ title: "Figures"
 
 ## Figures
 
+Also see the [docs on figures]({{ site.canonical-url }}/docs/editing/figures.html).
+
 Figures, as we refer to them, are images, or similar visual artifacts (including tables) accompanied by a caption.
 
 To ensure EPUB2 compatibility (which requires valid XHTML 1.1), we don't use the HTML `<figure>` tag, but rather use either:
@@ -13,7 +15,7 @@ To ensure EPUB2 compatibility (which requires valid XHTML 1.1), we don't use the
 
 Old versions of the Electric Book template used a `blockquote` instead of a `div` for the figure, since a blockquote can be created with markdown `>` syntax.
 
-To show figures in context, here is an article from *The Comics Grid: Journal of comics scholarship* by [Chris Fradkin](10-02.html#fradkin-1){:.indexed #fradkin-1}. The abstract, if you're curious:
+To show figures in context, here is an article from *The Comics Grid: Journal of comics scholarship* by [Chris Fradkin](10-02-dynamic-index.html#fradkin-1){:.indexed #fradkin-1}. The abstract, if you're curious:
 
 > This note explores the notion of comic superheroes as tools for the empowerment of children. The author details interventions in Rwanda and Brazil, and their different usages of superheroes. With a focus on the superhero’s pre-cloak stage—the stage prior to their employing superpowers—the author offers glimpses of current work in progress to help therapists empower orphaned children. While this area of research is at an early stage, its potential among health professionals is growing. Thus the comic superhero may be more than celluloid, as health professionals learn to use his superpowers.
 
@@ -43,8 +45,8 @@ A program that employs the pre-cloak stage of superheroes has been active in Rwa
     image="fradkin-2.jpg"
     image-height="15"
     reference="Figure 2"
-    caption="On the pediatric ward of the A.C. Camargo Cancer Center, superhero IV covers transform children’s chemo drip into _Superformula_. Design & Branding © J. Walter Thompson, Brazil, 2016 (Accessed 15 May 2016)."
-    description="On the pediatric ward of the A.C. Camargo Cancer Center, superhero IV covers transform children’s chemo drip into _Superformula_. Design & Branding © J. Walter Thompson, Brazil, 2016 (Accessed 15 May 2016)."
+    caption="On the pediatric ward of the A.C. Camargo Cancer Center, superhero IV covers transform children’s chemo drip into _Superformula_. Design & Branding © J. Walter Thompson, Brazil, 2016 (Accessed 15&nbsp;May 2016)."
+    description="A poster that describes _Superformula to fight cancer_ covers, which have superhero logos on the covers of chemo drips. There is a batman logo on the cover in the foreground. Photos and text explain how the cover is attached."
 %}
 
 So where to go? I pondered on the future of the project; an effort conceived in several stages. The Rwandans were standing in the background. Therapists were asking what to do…. The cart was put in motion; it was rolling down the hill; but still, the next step was elusive. Then, bang! the answer hit me: A compilation! A directory for the therapists; in particular, those who work with high-risk children. I envisioned a sleek database; a gold-foil embossed book. I celebrated, having settled on direction. My compass was following the course.

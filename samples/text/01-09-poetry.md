@@ -6,6 +6,8 @@ title: "Poetry"
 
 First, a bit of background about how we like to mark up poetry. This will help you understand what you're looking at when we get to the samples below.
 
+Also see the official [docs on poetry]({{ site.canonical-url }}/docs/editing/poetry.html).
+
 Encoding poetry can be tricky. Usually, poetry in HTML is structured by tagging each stanza as a paragraph, with line breaks after each line. You can do this by adding markdown line breaks (with double spaces or `\\` at the end of each line) and tagging the paragraph with `{:.verse}`. However, this structure makes it impossible to have browsers, ereaders and PDF engines correctly indent runover lines (because there is no [`nth-line` selector](https://css-tricks.com/a-call-for-nth-everything/) in CSS, unless you resort to [a Javascript method](https://github.com/davatron5000/Lettering.js#letters-words-lines-and-more) that will bloat your code and won't run on many ereaders).
 
 > Tech note: Some text and code editors (e.g. Atom) strip out spaces at the ends of lines automatically. So use `\\` for line breaks, not double-spaces.
@@ -61,7 +63,7 @@ Big gaps between words in a line must be created with spaces or space entities l
 
 But wait, there's more! Best practice for poetry layout is that – in print – a poem should be centered on its longest line. That is *not* centering the lines of poetry, but placing the left-justified poem in the horizontal middle of the page. Put another way, the poem should be indented till its longest line is centered on the page.
 
-To achieve this, put the entire poem, including its title, in a blockquote, by adding `> ` to the start of each line. Tag the whole blockquote as {:.verse}, too. Finally, decide how wide you want the poem to be in multiple of 10 per cent. That is, if you reckon this poem's longest line reaches across 90 per cent of the page, use `.width-90`.
+To achieve this, put the entire poem, including its title, in a blockquote, by adding `> ` to the start of each line. Tag the whole blockquote as `{:.verse}`, too. Finally, decide how wide you want the poem to as a percentage of the page width. That is, if you reckon this poem's longest line reaches across 90 per cent of the page, use `.width-90`.
 
 ~~~
 > - ### To One Who Has Been Long in City Pent

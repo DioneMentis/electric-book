@@ -333,7 +333,7 @@ You may need to reload the web page once this server is running."
 			if [ $countjs != 0 ]; then 
 				epubscripts="y"
 			fi
-			# Copy text (files in file-list only), images, fonts, styles and package.opf to epub
+			# Copy text (files in file-list only), images, fonts, styles, package.opf and toc.ncx to epub
 			cd "$location"/_site/"$bookfolder"
 			# If not a translation...
 			if [ "$epubsubdirectory" = "" ]; then
@@ -355,6 +355,10 @@ You may need to reload the web page once this server is running."
 				if [ -e "$location"/_site/$bookfolder/package.opf ]; then
 					echo "Copying package.opf..."
 					cp "$location"/_site/$bookfolder/package.opf "$location"/_site/epub/package.opf
+				fi
+				if [ -e "$location"/_site/$bookfolder/toc.ncx ]; then
+					echo "Copying toc.ncx..."
+					cp "$location"/_site/$bookfolder/toc.ncx "$location"/_site/epub/toc.ncx
 				fi
 			# If a translation...
 			else
@@ -392,6 +396,10 @@ You may need to reload the web page once this server is running."
 				if [ -e "$location"/_site/$bookfolder/$epubsubdirectory/package.opf ]; then
 					echo "Copying translation package.opf..."
 					cp "$location"/_site/$bookfolder/$epubsubdirectory/package.opf "$location"/_site/epub/package.opf
+				fi
+				if [ -e "$location"/_site/$bookfolder/$epubsubdirectory/toc.ncx ]; then
+					echo "Copying translation toc.ncx..."
+					cp "$location"/_site/$bookfolder/$epubsubdirectory/toc.ncx "$location"/_site/epub/toc.ncx
 				fi
 				cd "$location"
 			fi
@@ -504,6 +512,9 @@ You may need to reload the web page once this server is running."
 			if [ -e package.opf ]; then
 				zip --quiet "$location/_output/$epubfilename.zip" package.opf
 			fi
+			if [ -e toc.ncx ]; then
+				zip --quiet "$location/_output/$epubfilename.zip" toc.ncx
+			fi
 			# Change file extension .zip to .epub
 			cd "$location"/_output
 			if [ -e "$epubfilename".zip ]; then
@@ -591,8 +602,14 @@ You may need to reload the web page once this server is running."
 			# Build the apps if required
 			if [ "$appbuildgenerateapp" = "a" ]
 				then
-				echo "Building Android app..."
 				cd _site/app
+	            echo "Removing old Android platform files..."
+	            cordova platform remove android
+	            echo "Fetching latest Android platform files..."
+	            call cordova platform add android
+	            echo "Preparing platforms and plugins..."
+	            call cordova prepare android
+				echo "Building Android app..."
 				if [ "$apprelease" = "y" ]
 					then
 						cordova build android --release
@@ -603,6 +620,10 @@ You may need to reload the web page once this server is running."
 				echo "Done. Opening folder containing Android app..."
 				# (On OSX, this will be open, not xdg-open.)
 				xdg-open _site/app/platforms/android/build/outputs/apk/
+
+				echo "Attempting to run app in emulator..."
+				cordova emulate android
+
 			# Building iOS not available on Linux, only newish Macs
 			elif [ "$appbuildgenerateapp" = "i" ]
 				then
@@ -628,6 +649,13 @@ You may need to reload the web page once this server is running."
 			elif [ "$appbuildgenerateapp" = "ai" ]
 				then
 				echo "Building Android app first, then iOS app."
+				cd _site/app
+	            echo "Removing old Android platform files..."
+	            cordova platform remove android
+	            echo "Fetching latest Android platform files..."
+	            call cordova platform add android
+	            echo "Preparing platforms and plugins..."
+	            call cordova prepare android
 				echo "Building Android app..."
 				if [ "$apprelease" = "y" ]
 					then
@@ -638,6 +666,10 @@ You may need to reload the web page once this server is running."
 				echo "Done. Opening folder containing Android app..."
 				# (On OSX, this will be open, not xdg-open.)
 				xdg-open _site/app/platforms/android/build/outputs/apk/
+
+				echo "Attempting to run app in emulator..."
+				cordova emulate android
+
 				echo "Building iOS app..."
 				if [ "$apprelease" = "y" ]
 					then
@@ -772,6 +804,7 @@ You may need to reload the web page once this server is running."
 	    echo "This process will optimise the images in a book's _source folder"
 	    echo "and copy them to the print-pdf, screen-pdf, web and epub image folders."
 	    echo "You need to have run 'Install or update dependencies' at least once,"
+	    echo "have Gulp installed globally (https://gulpjs.com/),"
 	    echo "and have GraphicsMagick installed (http://www.graphicsmagick.org, or try"
 	    echo "brew install graphicsmagick"
 

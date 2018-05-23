@@ -5,6 +5,11 @@ as output tags, e.g. {{ title }} for the current
 book's title.
 {% endcomment %}
 
+{% comment %}Don't do all this work if metadata
+is already loaded on this page.{% endcomment %}
+{% if metadata-loaded %}
+{% else %}
+
 {% assign build = "development" %}
 {% if site.build and site.build != "" %}
     {% assign build = site.build %}
@@ -22,6 +27,7 @@ These values can be overridden in _data/locales.yml for translations.
 {% capture project-email %}{{ site.data.meta.project.email }}{% endcapture %}
 {% capture project-name %}{{ site.data.meta.project.name }}{% endcapture %}
 {% capture project-description %}{{ site.data.meta.project.description }}{% endcapture %}
+{% capture project-logo %}{{ site.data.meta.project.logo }}{% endcapture %}
 {% capture project-image %}{{ site.data.meta.project.image }}{% endcapture %}
 {% capture project-credit %}{{ site.data.meta.project.credit }}{% endcapture %}
 {% capture project-language %}{{ site.data.meta.project.language }}{% endcapture %}
@@ -189,6 +195,7 @@ and book content as a Liquid output tag e.g. {{ title }}
     {% assign epub-file-list = work.products.epub.files %}
     {% assign epub-toc = work.products.epub.toc %}
     {% capture epub-contents-page %}{{ work.products.epub.contents-page }}{% endcapture %}
+    {% capture epub-language %}{{ work.products.epub.language }}{% endcapture %}
 
     {% capture screen-pdf-date %}{{ work.products.screen-pdf.date }}{% endcapture %}
     {% capture screen-pdf-format %}{{ work.products.screen-pdf.format }}{% endcapture %}
@@ -325,6 +332,7 @@ defined in meta.yml for the given translation.
             {% if work.products.epub.files %}{% assign epub-file-list = work.products.epub.files %}{% endif %}
             {% if work.products.epub.toc %}{% assign epub-toc = work.products.epub.toc %}{% endif %}
             {% if work.products.epub.contents-page %}{% capture epub-contents-page %}{{ work.products.epub.contents-page }}{% endcapture %}{% endif %}
+            {% if work.products.epub.language %}{% capture epub-language %}{{ work.products.epub.language }}{% endcapture %}{% endif %}
 
             {% if work.products.screen-pdf.date %}{% capture screen-pdf-date %}{{ work.products.screen-pdf.date }}{% endcapture %}{% endif %}
             {% if work.products.screen-pdf.format %}{% capture screen-pdf-format %}{{ work.products.screen-pdf.format }}{% endcapture %}{% endif %}
@@ -420,6 +428,7 @@ override any metadata set for that variant.{% endcomment %}
               {% if data.products.epub.image %}{% capture epub-image %}{{ data.products.epub.image }}{% endcapture %}{% endif %}
               {% if data.products.epub.files %}{% assign epub-file-list = data.products.epub.files %}{% endif %}
               {% if data.products.epub.contents-page %}{% capture epub-contents-page %}{{ work.products.epub.contents-page }}{% endcapture %}{% endif %}
+              {% if data.products.epub.language %}{% capture epub-language %}{{ work.products.epub.language }}{% endcapture %}{% endif %}
               {% if data.products.epub.toc %}
                 {% assign epub-toc = data.products.epub.toc %}
                 {% if site.output == "epub" %}
@@ -761,4 +770,8 @@ or parent-language overrides, if they exist. {% endcomment %}
 {% endif %}
 {% if locale.project.credit and locale.project.credit != "" %}
     {% capture project-credit %}{{ locale.project.credit }}{% endcapture %}
+{% endif %}
+
+{% comment %}End of entire metadata load.{% endcomment %}
+{% assign metadata-loaded = true %}
 {% endif %}

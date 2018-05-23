@@ -5,6 +5,10 @@ order: 4
 ---
 
 # External media
+{:.no_toc}
+
+* toc
+{:toc}
 
 If a large number of images makes your project too big, you can store your images in a separate repo and serve them on a separate server for PDF and web output.
 
@@ -12,7 +16,7 @@ There is a template repo for external media at [github.com/electricbookworks/ele
 
 ## Setting external-media paths
 
-You set the full URL for the `remote-media` location in `_data/settings.yml`. The `remote-media` paths must be full URLS. For example:
+You set the full URL for the `remote-media` location in `_data/settings.yml`. The `remote-media` paths must be full URLs. For example:
 
 ```
 remote-media:

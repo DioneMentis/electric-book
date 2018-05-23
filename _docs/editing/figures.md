@@ -20,7 +20,7 @@ The reason we use a blockquote is that it lets us keep images and their captions
 
 Here's an example of markdown for a figure:
 
-~~~
+~~~ md
 > ![Line drawing of a book](../{{ site.image-set }}/book.jpg)
 >
 > This is not a book.
@@ -39,14 +39,14 @@ The third line is the figure caption, followed by the kramdown tag `{:.figure}`,
 
 If your image has no caption, just skip the empty line and caption line:
 
-~~~
+~~~ md
 > ![Figure 2-A: The Ballard scoring method](../{{ site.image-set }}/fig-2-A.svg)
 {:.figure}
 ~~~
 
 If it's important to you that the image isn't in a blockquote, and there is no caption, you can use:
 
-~~~
+~~~ md
 ![Figure 2-A: The Ballard scoring method](../{{ site.image-set }}/fig-2-A.svg)
 {:.figure}
 ~~~
@@ -113,6 +113,7 @@ caption="Blake's illustration for “The Tyger”."
 
 If you need to rotate a large figure on the page, add the `rotate` class. E.g.
 
+{% raw %}
 ```
 {% include figure
    html="<table>...</table>"
@@ -121,3 +122,10 @@ If you need to rotate a large figure on the page, add the `rotate` class. E.g.
    class="rotate"
 %}
 ```
+{% endraw %}
+
+Rotation only affects PDF output.
+
+### Figure width
+
+If you need to make a figure narrower than the full text area, add a `width-x` class, where `x` is the width you want in percent. E.g. `width-50` will create a half-width image.

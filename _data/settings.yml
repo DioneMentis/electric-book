@@ -50,6 +50,13 @@ web:
   # Note that breadcrumbs slows your Jekyll build significantly.
   masthead:
     content: breadcrumbs
+  # ----------------------------------------------------------
+  # Content accordion
+  # ----------------------------------------------------------
+  # Do you want to collapse content sections in chapters on a
+  # particular heading level? Default h2, set in accordion.js.
+  # Set this to true to enable, or false to disable.
+  accordion: false
 
 # ----------------------------------------------------------
 # Epub settings
@@ -72,6 +79,12 @@ epub:
   # Then you can put {% include toc %} anywhere in your epub
   # to generate a hidden nav element.
   hide-nav: false
+  # Settings that affect OPF metadata
+  meta:
+    # Turn project name in epub OPF metadata on/off
+    project-name: false
+    # Override the language in epub OPF metadata (use a subtag, e.g. en)
+    language: ""
 
 # ----------------------------------------------------------
 # App settings
@@ -94,6 +107,13 @@ app:
   # Note that breadcrumbs slows your Jekyll build significantly.
   masthead:
     content: breadcrumbs
+  # ----------------------------------------------------------
+  # Content accordion
+  # ----------------------------------------------------------
+  # Do you want to collapse content sections in chapters on a
+  # particular heading level? Default h2, set in accordion.js.
+  # Set this to true to enable, or false to disable.
+  accordion: false
   # ----------------------------------------------------------
   # Expansion file
   # ----------------------------------------------------------

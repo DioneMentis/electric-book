@@ -428,7 +428,7 @@ set /p process=Enter a number and hit return.
         echo Assembling epub...
 
 
-        :: Copy styles, images, text and package.opf to epub folder.
+        :: Copy styles, images, text, package.opf and toc.ncx to epub folder.
         :: The echo f preemptively answers xcopy's question whether 
         :: this is a file (see https://stackoverflow.com/a/3018371).
         :: The > nul supresses command-line feedback (pseudo silent mode)
@@ -546,6 +546,27 @@ set /p process=Enter a number and hit return.
         :epubOPFDone
 
 
+        :: Get the right toc.ncx for the translation we're creating
+        :epubCopyNCX
+            echo Copying NCX file...
+            if "%subdirectory%"=="" goto epubOriginalNCX
+            if not "%subdirectory%"=="" goto epubSubdirectoryNCX
+
+        :: If original language, use the package.opf in the root
+        :epubOriginalNCX
+            echo f | xcopy /e /q "toc.ncx" "../epub" > nul
+            echo NCX copied.
+            goto epubNCXDone
+
+        :: If translation language, use the toc.ncx in the subdirectory
+        :: This will overwrite the original language NCX file
+        :epubSubdirectoryNCX
+            echo f | xcopy /e /q "%subdirectory%\toc.ncx" "../epub" > nul
+            echo NCX copied.
+            goto epubNCXDone
+
+        :epubNCXDone
+
         :: Go into _site/epub to move some more files and then zip to _output
         cd %location%_site/epub
 
@@ -628,11 +649,12 @@ set /p process=Enter a number and hit return.
                 if not "%subdirectory%"=="" if exist "%subdirectory%" zip --recurse-paths --quiet "%location%_output/%epubFileName%.zip" "%subdirectory%"
                 goto epubAddPackageFiles
 
-        :: Add the META-INF and package.opf
+        :: Add the META-INF, package.opf and toc.ncx
         :epubAddPackageFiles
             :: Now add these admin files to the zip
             if exist META-INF zip --recurse-paths --quiet "%location%_output/%epubFileName%.zip" META-INF
             if exist package.opf zip --quiet "%location%_output/%epubFileName%.zip" package.opf
+            if exist toc.ncx zip --quiet "%location%_output/%epubFileName%.zip" toc.ncx
 
             :: Change file extension .zip to .epub
             cd %location%_output
@@ -739,6 +761,15 @@ set /p process=Enter a number and hit return.
             echo Building your Android app... If you get an error, make sure Cordova and Android Studio are installed.
             cd _site/app
 
+            :: Prepare for build
+            echo Removing old Android platform files...
+            call cordova platform remove android
+            echo Fetching latest Android platform files...
+            call cordova platform add android
+            echo Preparing platforms and plugins...
+            call cordova prepare android
+            echo Building app...
+
             if "%apprelease%"=="y" (
                 call cordova build android --release
             ) else (
@@ -747,6 +778,11 @@ set /p process=Enter a number and hit return.
 
             echo Opening folder containing app...
             %SystemRoot%\explorer.exe "%location%_site\app\platforms\android\build\outputs\apk"
+
+            :: Try to emulate
+            echo "Attempting to run app in emulator..."
+            call cordova emulate android
+
             :appbuildaftercordova
             cd "%location%"
 
@@ -877,6 +913,7 @@ set /p process=Enter a number and hit return.
         echo This process will optimise the images in a book's _source folder
         echo and copy them to the print-pdf, screen-pdf, web and epub image folders.
         echo You need to have run 'Install or update dependencies' at least once,
+        echo have Gulp installed globally (https://gulpjs.com/),
         echo and have GraphicsMagick installed (http://www.graphicsmagick.org).
         echo.
 

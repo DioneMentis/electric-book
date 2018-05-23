@@ -6,11 +6,13 @@ title: "Plain images"
 
 ## Plain images
 
-For plain images, here's the first chapter of [*The Count of Monte Christo* by Alexandre Dumas](http://www.gutenberg.org/files/1184/1184-h/1184-h.htm){:#count-2}.
+Also see the docs on [including images in content]({{ site.canonical-url }}/docs/editing/images.html) and [adding them to your project]({{ site.canonical-url }}/docs/images/adding-image-files.html).
+
+For examples of plain images, here's the first chapter of [*The Count of Monte Christo* by Alexandre Dumas](http://www.gutenberg.org/files/1184/1184-h/1184-h.htm){:#count-2}.
 
 First, here is an SVG showing the relationships in this novel.
 
-![https://commons.wikimedia.org]({{ images }}/count-of-monte-cristo-relations.svg)
+{% include image file="count-of-monte-cristo-relations.svg" alt="Image of network of relationships in The Count of Monte Christo from https://commons.wikimedia.org" %}
 [Relationships in *The Count of Monte Christo*](https://commons.wikimedia.org/wiki/File:CountOfMonteCristoRelations.svg#/media/File:CountOfMonteCristoRelations.svg). This is actually a paragraph that starts with an inline image, and has an `image-with-caption` class, which turns any text in this paragraph into a caption. The remaining images in this chapter are plain images, with no text or class attached.
 {:.image-with-caption}
 
@@ -50,7 +52,7 @@ All hands obeyed, and at once the eight or ten seamen who composed the crew, spr
 
 "And how did this misfortune occur?" inquired the latter, resuming the interrupted conversation.
 
-![]({{ images }}/count-of-monte-christo-1.jpg)
+{% include image file="count-of-monte-christo-1.jpg" %}
 
 "Alas, sir, in the most unexpected manner. After a long talk with the harbor-master, Captain Leclere left Naples greatly disturbed in mind. In twenty-four hours he was attacked by a fever, and died three days afterwards. We performed the usual burial service, and he is at his rest, sewn up in his hammock with a thirty-six pound shot at his head and his heels, off El Giglio island. We bring to his widow his sword and cross of honor. It was worth while, truly," added the young man with a melancholy smile, "to make war against the English for ten years, and to die in his bed at last, like everybody else."
 
@@ -78,7 +80,7 @@ The owner did not wait for a second invitation. He seized a rope which Dantès f
 
 "Yes," said Danglars, darting at Edmond a look gleaming with hate. "Yes, he is young, and youth is invariably self-confident. Scarcely was the captain's breath out of his body when he assumed the command without consulting anyone, and he caused us to lose a day and a half at the Island of Elba, instead of making for Marseilles direct."
 
-![]({{ images }}/count-of-monte-christo-2.jpg)
+{% include image file="count-of-monte-christo-2.jpg" %}
 
 "As to taking command of the vessel," replied Morrel, "that was his duty as captain's mate; as to losing a day and a half off the Island of Elba, he was wrong, unless the vessel needed repairs."
 
@@ -130,7 +132,7 @@ Morrel looked around him, and then, drawing Dantès on one side, he said suddenl
 
 "_Pardieu!_, and that is true!" cried the owner, greatly delighted. "And that was Policar Morrel, my uncle, who was afterwards a captain. Dantès, you must tell my uncle that the emperor remembered him, and you will see it will bring tears into the old soldier's eyes. Come, come," continued he, patting Edmond's shoulder kindly, "you did very right, Dantès, to follow Captain Leclere's instructions, and touch at Elba, although if it were known that you had conveyed a packet to the marshal, and had conversed with the emperor, it might bring you into trouble."
 
-![]({{ images }}/count-of-monte-christo-3.jpg)
+{% include image file="count-of-monte-christo-3.jpg" %}
 
 "How could that bring me into trouble, sir?" asked Dantès; "for I did not even know of what I was the bearer; and the emperor merely made such inquiries as he would of the first comer. But, pardon me, here are the health officers and the customs inspectors coming alongside." And the young man went to the gangway. As he departed, Danglars approached, and said,—
 
@@ -180,7 +182,7 @@ At this moment the young man returned; Danglars withdrew.
 
 "I really must ask you to excuse me, M. Morrel. My first visit is due to my father, though I am not the less grateful for the honor you have done me."
 
-![]({{ images }}/count-of-monte-christo-4.jpg)
+{% include image file="count-of-monte-christo-4.jpg" %}
 
 "Right, Dantès, quite right. I always knew you were a good son."
 
