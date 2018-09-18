@@ -63,6 +63,9 @@ $color-links: #5f738c !default;
 $color-buttons: $color-accent !default;
 $color-buttons-hover: darken( $color-buttons, 20% ) !default;
 $color-highlight: #ffd54d !default;
+$color-notification-low: #7fcebf !default;
+$color-notification-medium: #ffe388 !default;
+$color-notification-high: #ff7c4d !default;
 
 // Some features rearrange at certain screen sizes.
 // What are your break points for rearrangement?
@@ -106,6 +109,7 @@ $nav-bar-children-prompt-hide: "\2212" !default; // \2212 is an actual minus sig
 $nav-bar-scrollbar: true !default;
 $nav-bar-width: 15em !default;
 $nav-bar-fixed: true !default; // fixed is not fully supported on many mobile browsers
+$nav-bar-back-button-hide: true !default;
 $nav-bar-label-color: $color-light !default;
 $nav-bar-label-background-color: $masthead-background-color !default;
 $nav-bar-label-border-color: transparent !default;
@@ -137,6 +141,9 @@ $web-css-reset: true !default;
 
 // Structural HTML components
 $web-wrappers: true !default;
+
+// Conventional helper classes
+$web-helpers: true !default;
 
 // Default typography
 $web-base-typography: true !default;
@@ -180,6 +187,9 @@ $web-video: true !default;
 $web-pagination: true !default;
 $web-multiple-choice-questions: true !default;
 
+// Docs
+$web-docs: true !default;
+
 // Type-control classes
 $web-smallcaps: true !default;
 $web-fitting: true !default;  // E.g. tracking and shrinking
@@ -202,6 +212,9 @@ $web-reset-sequences: true !default; // This should stay last in the @import lis
 
 // Structural HTML components
 @import "partials/web-wrappers";
+
+// Conventional helper classes
+@import "partials/web-helpers";
 
 // Default typography
 @import "partials/web-base-typography";
@@ -244,6 +257,9 @@ $web-reset-sequences: true !default; // This should stay last in the @import lis
 @import "partials/web-video";
 @import "partials/web-pagination";
 @import "partials/web-mcqs";
+
+// Docs
+@import "partials/web-docs";
 
 // Type-control classes
 @import "partials/web-smallcaps";
